@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h2 class="text-center">Testimonios</h2>
+
+    <!-- Carrusel de testimonios -->
+    <div id="testimoniosCarousel" class="carousel slide my-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for testimonio in testimonios %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <div class="text-center">
+                        {% if testimonio.foto %}
+                            <img src="{{ testimonio.foto.url }}" class="rounded-circle mb-3" alt="{{ testimonio.nombre }}" style="width: 100px; height: 100px;">
+                        {% endif %}
+                        <h5>{{ testimonio.nombre }}</h5>
+                        <p>"{{ testimonio.testimonio }}"</p>
+                        <small class="text-muted">{{ testimonio.fecha|date:"d M Y" }}</small>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimoniosCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimoniosCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+
+    <!-- Formulario para agregar testimonio -->
+    <h3 class="text-center">Deja tu testimonio</h3>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Enviar testimonio</button>
+    </form>
+{% endblock %}

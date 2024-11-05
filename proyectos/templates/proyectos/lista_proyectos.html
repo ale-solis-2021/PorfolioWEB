@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1 class="text-center">Todos los Proyectos</h1>
+    <div class="row">
+        {% for proyecto in proyectos %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ proyecto.image.url }}" class="card-img-top" alt="{{ proyecto.title }}" style="max-height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ proyecto.title }}</h5>
+                        <p class="card-text">{{ proyecto.description }}</p>
+                        {% if proyecto.url %}
+                            <a href="{{ proyecto.url }}" class="btn btn-primary">Ver más</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Sobre mí</h1>
+    <h2>{{ sobre.nombre }}</h2>
+    
+    <!-- Mostrar la imagen de perfil si existe -->
+    {% if sobre.imagen_perfil %}
+        <img src="{{ sobre.imagen_perfil.url }}" alt="{{ sobre.nombre }}" style="max-width: 200px;">
+    {% endif %}
+    
+    <p>{{ sobre.biografia }}</p>
+{% endblock %}
