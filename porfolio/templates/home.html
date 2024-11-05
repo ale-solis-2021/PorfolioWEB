@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <!-- Sección de Bienvenida -->
+    <section class="text-center my-5">
+        <h1>¡Bienvenido a Mi Portafolio!</h1>
+        <p class="lead">Soy un desarrollador apasionado por crear soluciones innovadoras. Aquí encontrarás una selección de mis trabajos y un poco sobre mí.</p>
+    </section>
+        <!-- Sección Sobre Mí -->
+        <section class="my-5">
+            <h2 class="text-center">Sobre Mí</h2>
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center">
+                    {% if sobre.imagen_perfil %}
+                        <img src="{{ sobre.imagen_perfil.url }}" alt="{{ sobre.nombre }}" class="rounded-circle" style="max-width: 200px;">
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <p>{{ sobre.biografia }}</p>
+                    <a href="{% url 'sobre_mi' %}" class="btn btn-secondary">Leer más</a>
+                </div>
+            </div>
+        </section>
+
+    <!-- Sección de Proyectos Destacados -->
+    <section class="my-5">
+        <h2 class="text-center">Proyectos Destacados</h2>
+        <div class="row">
+            {% for proyecto in proyectos %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ proyecto.image.url }}" class="card-img-top" alt="{{ proyecto.title }}" style="max-height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ proyecto.title }}</h5>
+                            <p class="card-text">{{ proyecto.description }}</p>
+                            {% if proyecto.url %}
+                                <a href="{{ proyecto.url }}" class="btn btn-primary">Ver más</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+
+    <!-- Sección de Testimonios -->
+    <section class="my-5">
+        <h2 class="text-center">Testimonios</h2>
+        <div id="testimoniosCarousel" class="carousel slide my-5" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for testimonio in testimonios %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <div class="text-center">
+                            {% if testimonio.foto %}
+                                <img src="{{ testimonio.foto.url }}" class="rounded-circle mb-3" alt="{{ testimonio.nombre }}" style="width: 100px; height: 100px;">
+                            {% endif %}
+                            <h5>{{ testimonio.nombre }}</h5>
+                            <p>"{{ testimonio.testimonio }}"</p>
+                            <small class="text-muted">{{ testimonio.fecha|date:"d M Y" }}</small>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimoniosCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimoniosCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section class="my-5 text-center">
+        <h2>Contáctame</h2>
+        <p>Si estás interesado en trabajar juntos o tienes alguna pregunta, no dudes en enviarme un mensaje.</p>
+        <a href="{% url 'contacto' %}" class="btn btn-primary">Ir a la página de contacto</a>
+    </section>
+{% endblock %}
+

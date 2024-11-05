@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-custom-blue">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">AS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Inicio</a> <!-- Llevando a la página principal -->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'lista_proyectos' %}">Proyectos</a> <!-- Llevando a la página de todos los proyectos -->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'sobre_mi' %}">Sobre mí</a> <!-- Llevando a la página "Sobre mí" -->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'lista_testimonios' %}">Testimonios</a> <!-- Llevando a la página de testimonios -->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contacto' %}">Contacto</a> <!-- Llevando a la página de contacto -->
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<style>
+    .bg-custom-blue {
+        background: linear-gradient(45deg, #add8e6, #89d1ee, #46d3e6);
+    }
+    
+    .navbar-brand, .nav-link {
+        color: white !important;
+    }
+  
+    .nav-link:hover {
+        color: #d1e7ff !important;
+    }
+</style>
